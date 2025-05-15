@@ -1,5 +1,6 @@
 import React from 'react'
 import { CheckCircle, ArrowRight, Users } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 interface CompletionStepProps {
   userData: {
@@ -14,6 +15,13 @@ interface CompletionStepProps {
 }
 
 export const CompletionStep: React.FC<CompletionStepProps> = ({ userData, isLastStep, onCancel }) => {
+  const navigate = useNavigate()
+
+  const handleContinue = () => {
+    // Navigate to the profile form page
+    navigate('/profile')
+  }
+
   return (
     <div className="flex flex-col items-center text-center">
       <div className="bg-green-100 p-4 rounded-full mb-6">
@@ -73,14 +81,14 @@ export const CompletionStep: React.FC<CompletionStepProps> = ({ userData, isLast
           onClick={onCancel}
           className="flex items-center justify-center border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-3 px-6 rounded-lg transition-colors"
         >
-          Exit
+          Skip for now 
         </button>
         
         <button 
-          onClick={onCancel}
+          onClick={handleContinue}
           className="flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-6 rounded-lg transition-colors flex-1"
         >
-          Go to Dashboard
+          Continue setting up the profile
           <ArrowRight className="ml-2 h-5 w-5" />
         </button>
       </div>
